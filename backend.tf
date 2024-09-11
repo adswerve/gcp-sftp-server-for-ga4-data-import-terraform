@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "${var.name}-tf-state"
+    bucket = "ga4-data-import-sftp-tf-state"
     prefix = "dev"
   }
 }
