@@ -32,6 +32,11 @@ variable "os_family" {
     type = string
 }
 
+variable "compute_zone" {
+    description = "The zone that the machine should be created in"
+    type = string
+}
+
 variable "firewall_ip_ranges" {
   description = "The range of IP addresses that are allowed to connect to your VM"
   type = list(string)

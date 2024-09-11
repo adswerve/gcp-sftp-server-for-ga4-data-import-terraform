@@ -2,6 +2,7 @@
 resource "google_compute_instance" "sftp_server" {
   name = "${var.name}-server"
   machine_type = var.machine_type
+  zone = var.compute_zone
 
   boot_disk {
     initialize_params {
@@ -22,8 +23,8 @@ resource "google_compute_instance" "sftp_server" {
     sudo apt install -y openssh-server
 
     # Assign environment variables to local shell variables
-    username = "${username}"
-    password = "${password}"
+    username = "${var.username}"
+    password = "${var.password}"
 
     # Add user and set password
     sudo adduser --comment "" --disabled-password "$username"
