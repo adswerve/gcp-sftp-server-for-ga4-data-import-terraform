@@ -1,0 +1,1 @@
+# GCP SFTP Server for GA4 Data Import
