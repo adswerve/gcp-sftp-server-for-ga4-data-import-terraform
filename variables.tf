@@ -1,51 +1,51 @@
 variable "name" {
-    description = "Prefix for naming resources set up in GCP"
-    type = string
+  description = "Prefix for naming resources set up in GCP"
+  type        = string
 }
 
 // See article for using Terraform environment variables:
 // https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1
 variable "username" {
-    description = "The username for the SFTP server user"
-    type = string
-    sensitive = true
+  description = "The username for the SFTP server user"
+  type        = string
+  sensitive   = true
 }
 
 variable "public_key_ga4" {
   description = "The public key used for authentication by GA4."
-  type = string
-  sensitive = true
-  default = file("ga4_service_account_key.pub")
+  type        = string
+  sensitive   = true
+  default     = file("ga4_service_account_key.pub")
 }
 
 variable "public_key_sftp" {
   description = "The public key used for authentication by the SFTP server user."
-  type = string
-  sensitive = true
-  default = file("id_rsa_sftp.pub")
+  type        = string
+  sensitive   = true
+  default     = file("id_rsa_sftp.pub")
 }
 
 variable "project_id" {
-    description = "GCP Project ID"
-    type = string
+  description = "GCP Project ID"
+  type        = string
 }
 
 variable "machine_type" {
-    description = "Series and type of machine used for Compute Engine"
-    type = string
+  description = "Series and type of machine used for Compute Engine"
+  type        = string
 }
 
 variable "os_family" {
-    description = "Image project and/or family for OS for boot disk on Compute Engine"
-    type = string
+  description = "Image project and/or family for OS for boot disk on Compute Engine"
+  type        = string
 }
 
 variable "compute_zone" {
-    description = "The zone that the machine should be created in"
-    type = string
+  description = "The zone that the machine should be created in"
+  type        = string
 }
 
 variable "firewall_ip_ranges" {
   description = "The range of IP addresses that are allowed to connect to your VM"
-  type = list(string)
+  type        = list(string)
 }
