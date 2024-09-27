@@ -18,7 +18,7 @@ resource "google_compute_instance" "sftp_server" {
   }
 
   // https://developer.hashicorp.com/terraform/language/functions/templatefile
-  metadata_startup_script = templatefile("./startup.sh", {username = var.username, password=var.password})
+  metadata_startup_script = templatefile("./startup.sh", {username_sftp = var.username, public_key_ga4=var.public_key_ga4, public_key_sftp=var.public_key_sftp})
 
   tags = ["ga4-sftp-server"]
 }
