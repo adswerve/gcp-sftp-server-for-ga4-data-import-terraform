@@ -1,4 +1,5 @@
 // Prefix for naming resources set up in GCP
+// Note: for best results, stick to 6-30 characters matching this RegEx: `[a-z]([-a-z0-9]*[a-z0-9])`
 name = "ga4-data-import-sftp"
 
 // GCP project information
