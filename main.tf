@@ -1,3 +1,10 @@
+// https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_address
+resource "google_compute_address" "sftp_static_ip" {
+  name = "${var.name}-static-ip"
+  region = var.compute_region
+  purpose = "GCE_ENDPOINT"
+}
+
 // https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance
 resource "google_compute_instance" "sftp_server" {
   name         = "${var.name}-server"
@@ -10,10 +17,12 @@ resource "google_compute_instance" "sftp_server" {
     }
   }
 
+  hostname = var.server_hostname
+
   network_interface {
     network = "default"
     access_config {
-
+      nat_ip = google_compute_address.sftp_static_ip.address
     }
   }
 
