@@ -1,12 +1,14 @@
 #!/bin/bash
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y openssh-server
+sudo apt install -y google-cloud-sdk
 
 # Assign environment variables to local shell variables
 USERNAME_GA4="ga4-importer"
 PUBLIC_KEY_GA4=${public_key_ga4}
 USERNAME_SFTP=${username_sftp}
 PUBLIC_KEY_SFTP=${public_key_sftp}
+GCS_BUCKET=${gcs_bucket}
 
 # Add users without passwords
 sudo adduser --comment "" --disabled-password "$USERNAME_GA4"
@@ -26,12 +28,21 @@ sudo chown "$USERNAME_SFTP":"$USERNAME_SFTP" /home/"$USERNAME_SFTP"/.ssh
 sudo chmod 700 /home/"$USERNAME_SFTP"/.ssh
 sudo chmod 600 /home/"$USERNAME_SFTP"/.ssh/authorized_keys
 
+# Install gcsfuse to mount the Google Cloud Storage (GCS) bucket
+export GCSFUSE_REPO=gcsfuse-$(lsb_release -c -s)
+echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo apt install -y fuse gcsfuse
+
 # Set up SFTP directories and permissions
 sudo mkdir -p /var/sftp/uploads
 sudo chown root:root /var/sftp
 sudo chmod 755 /var/sftp
 sudo chown "$USERNAME_SFTP:$USERNAME_SFTP" /var/sftp/uploads
 sudo chmod 755 /var/sftp/uploads
+
+# Mount the GCS bucket directly to the uploads folder
+sudo gcsfuse "$GCS_BUCKET" /var/sftp/uploads
 
 # Configure SSH server for SFTP
 sudo tee -a /etc/ssh/sshd_config > /dev/null <<EOT
