@@ -8,8 +8,12 @@ Prior to running the `terraform plan` or `terraform apply` commands for the firs
 - "id_rsa_sftp.pub" (for the file managing user)
 
 ## TODO:
+- add Service Account for connecting to Cloud Storage
+- make sure there's a variable for passing in GCS bucket name
+- make sure key authentication works for GA4 and for end user
 - write documentation
-- figure out key authentication stuff for GA4 connection
+
+### Scratchpad:
 - add secret manager and service account support for better management of username/password
 - update shell script in startup to pull username/password from secret manager
 - test personal connection to sftp server
