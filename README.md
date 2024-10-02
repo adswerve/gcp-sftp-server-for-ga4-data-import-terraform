@@ -9,7 +9,6 @@ Prior to running the `terraform plan` or `terraform apply` commands for the firs
 
 ## TODO:
 - add Service Account for connecting to Cloud Storage
-- make sure there's a variable for passing in GCS bucket name
 - make sure key authentication works for GA4 and for end user
 - write documentation
 
