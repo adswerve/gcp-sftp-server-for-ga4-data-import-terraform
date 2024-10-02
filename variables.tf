@@ -55,9 +55,18 @@ variable "os_family" {
   type        = string
 }
 
-variable "compute_zone" {
-  description = "The zone that the machine should be created in"
+variable "compute_region" {
+  description = "The region for the machine instance, used for the static IP address"
   type        = string
+}
+
+variable "compute_zone" {
+  description = "The zone that the machine instance should be created in"
+  type        = string
+}
+
+variable "server_hostname" {
+  description = "The custom domain used for accessing the machine instance"
 }
 
 variable "firewall_ip_ranges" {
