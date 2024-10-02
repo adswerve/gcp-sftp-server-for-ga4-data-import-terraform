@@ -72,4 +72,5 @@ variable "server_hostname" {
 variable "firewall_ip_ranges" {
   description = "The range of IP addresses that are allowed to connect to your VM"
   type        = list(string)
+  default = ["0.0.0.0/0"]
 }
