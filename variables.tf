@@ -3,6 +3,7 @@ variable "name" {
   type        = string
 }
 
+// Authentication Variables
 // See article for using Terraform environment variables:
 // https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1
 variable "username" {
@@ -12,24 +13,38 @@ variable "username" {
 }
 
 variable "public_key_ga4" {
-  description = "The public key used for authentication by GA4."
+  description = "The public key used for authentication by GA4"
   type        = string
   sensitive   = true
   default     = file("ga4_service_account_key.pub")
 }
 
 variable "public_key_sftp" {
-  description = "The public key used for authentication by the SFTP server user."
+  description = "The public key used for authentication by the SFTP server user"
   type        = string
   sensitive   = true
   default     = file("id_rsa_sftp.pub")
 }
 
+// General GCP Variables
 variable "project_id" {
   description = "GCP Project ID"
   type        = string
 }
 
+variable "gcp_service_list" {
+    description = "GCP API libraries to enable, if necessary"
+    type = list(string)
+    default = [
+        "cloudresourcemanager.googleapis.com",
+        "serviceusage.googleapis.com",
+        "compute.googleapis.com",
+        "iam.googleapis.com",
+        "storage.googleapis.com"
+    ]
+}
+
+// Compute Engine Variables
 variable "machine_type" {
   description = "Series and type of machine used for Compute Engine"
   type        = string
