@@ -36,7 +36,7 @@ resource "google_compute_instance" "sftp_server" {
 
   service_account {
     email = google_service_account.compute_engine_sa.email
-    scopes = ["cloud-platform"]
+    scopes = ["cloud-platform", "storage-rw"]
   }
 
   tags = ["ga4-sftp-server"]

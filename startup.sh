@@ -34,25 +34,23 @@ sudo chmod 700 /home/"$USERNAME_SFTP"/.ssh
 sudo chown "$USERNAME_SFTP":"$USERNAME_SFTP" /home/"$USERNAME_SFTP"/.ssh/authorized_keys
 sudo chmod 600 /home/"$USERNAME_SFTP"/.ssh/authorized_keys
 
+# Set up SFTP directories and permissions
+sudo mkdir -p /var/sftp/uploads
+sudo chown "$USERNAME_SFTP:$USERNAME_SFTP" /var/sftp/uploads
+sudo chmod 775 /var/sftp/uploads
+
 # Install gcsfuse to mount the Google Cloud Storage (GCS) bucket
 #export GCSFUSE_REPO=gcsfuse-$(lsb_release -c -s)
 export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
 #echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
 echo "deb https://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-sudo apt-get update
+sudo apt-get update -y
 #sudo apt install -y fuse gcsfuse
 sudo apt-get install -y fuse gcsfuse
 
-# Set up SFTP directories and permissions
-sudo mkdir -p /var/sftp/uploads
-#sudo chown root:root /var/sftp
-#sudo chmod 755 /var/sftp
-sudo chown "$USERNAME_SFTP:$USERNAME_SFTP" /var/sftp/uploads
-sudo chmod 755 /var/sftp/uploads
-
 # Mount the GCS bucket directly to the uploads folder
-sudo gcsfuse "$GCS_BUCKET" /var/sftp/uploads
+sudo gcsfuse -o allow_other -file-mode=777 -dir-mode=777 "$GCS_BUCKET" /var/sftp/uploads
 
 # Ensure PubkeyAuthentication and AuthorizedKeysFile are set in sshd_config
 sudo sed -i '/^#*PubkeyAuthentication/c\PubkeyAuthentication yes' /etc/ssh/sshd_config
