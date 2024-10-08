@@ -2,7 +2,7 @@
 resource "google_compute_address" "sftp_static_ip" {
   name = "${var.name}-static-ip"
   region = var.compute_region
-  purpose = "GCE_ENDPOINT"
+  //purpose = "GCE_ENDPOINT"
 }
 
 // https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance
@@ -29,8 +29,8 @@ resource "google_compute_instance" "sftp_server" {
   // https://developer.hashicorp.com/terraform/language/functions/templatefile
   metadata_startup_script = templatefile("./startup.sh", {
     username_sftp = var.username,
-    public_key_ga4 = var.public_key_ga4,
-    public_key_sftp = var.public_key_sftp,
+    public_key_ga4 = trimspace(file("${path.module}/ga4_service_account_key.pub")),
+    public_key_sftp = trimspace(file("${path.module}/id_rsa_sftp.pub")),
     gcs_bucket = google_storage_bucket.file_bucket.name
   })
 

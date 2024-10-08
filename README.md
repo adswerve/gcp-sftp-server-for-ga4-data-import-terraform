@@ -37,6 +37,11 @@ Both users will authenticate using a public key instead of a password, so two `.
 
 Note: `.gitignore` has been set to ignore these files.
 
+## Debugging the Startup Script
+Open the VM via SSH in Compute Engine and run this command: `sudo grep "startup-script" /var/log/syslog`
+Check the SSH logs with this command: `sudo tail -f /var/log/auth.log`
+Check the public key file with this command: `sudo cat /home/sftpuser/.ssh/authorized_keys`
+
 ## TODO:
 - make sure key authentication works for GA4 and for end user
 - write documentation
