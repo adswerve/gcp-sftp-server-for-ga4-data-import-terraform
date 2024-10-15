@@ -58,6 +58,12 @@ sudo sed -i '/^#*AuthorizedKeysFile/c\AuthorizedKeysFile .ssh/authorized_keys' /
 
 # Configure SSH server for SFTP
 sudo tee -a /etc/ssh/sshd_config > /dev/null <<EOT
+
+# Update compatibility for GA4's SSH types
+HostKeyAlgorithms +ssh-rsa
+PubkeyAcceptedKeyTypes +ssh-rsa
+
+# User settings
 Match User $USERNAME_GA4
 ForceCommand internal-sftp
 PasswordAuthentication no
