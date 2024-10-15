@@ -1,12 +1,12 @@
 // GCP project information
-project_id = "as-dev-ryan"
+project_id = "your-gcp-project-name-goes-here"
 
 // Prefix for naming resources set up in GCP
 // Use 6-30 characters matching RegEx `[a-z]([-a-z0-9]*[a-z0-9])`
 name = "ga4-data-import-sftp"
 
 // Custom hostname for SFTP server
-server_hostname = "ga4sftp.ptomey.net"
+server_hostname = "ga4sftp.example.com"
 
 // Username for file uploader
 username = "sftpuser"
