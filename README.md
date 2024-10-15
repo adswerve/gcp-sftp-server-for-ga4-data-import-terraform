@@ -69,6 +69,9 @@ Once in a command line interface, you can:
 ### Does the file for the Data Import have to be named `ga4data.csv`?
 No, that value isn't hardcoded anywhere in these Terraform scripts. Just make sure that the file name matches what you've told GA4 to look for when configuring the Data Import data source.
 
+### Do the public key files actually need to be named as prescribed?
+Yes and no. The names are hardcoded, but if you really feel the need to change them, you can modify the file names being passed as options to `metadata_startup_script` in the `main.tf` file. However, it's not recommended to modify any of the `.tf` files or the `startup.sh` file.
+
 ### Can this support more than 1 data source/type in the Data Import settings?
 Yes, it should be able to. Use a different file name when configuring the new data source in GA4, but keep the other details the same, including the username.
 
