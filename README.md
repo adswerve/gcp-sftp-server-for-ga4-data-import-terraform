@@ -45,11 +45,34 @@ Both users will authenticate using a public key instead of a password, so two `.
 
 Note: `.gitignore` has been set to ignore these files.
 
-## Debugging the Startup Script
-Open the VM via SSH in Compute Engine and run this command: `sudo grep "startup-script" /var/log/syslog`
-Check the SSH logs with this command: `sudo tail -f /var/log/auth.log`
-Check the public key file with this command: `sudo cat /home/sftpuser/.ssh/authorized_keys`
+### Quick and Easy Key File Generation
+Your device probably already has the OpenSSH version of `ssh-keygen` available, so follow these steps:
+1. Open up a new Terminal.
+2. Run the command `ssh-keygen`.
+3. Press `Enter` to accept the default file location (`/Users/<username>/.ssh/`) or, optionally, input your own preferred location.
+4. Optionally, input a password to encrypt the private key file or press `Enter` to skip this step. A second confirmation will be needed either way.
+5. Find the private and public key files in the location from step 3.
 
-## TODO:
-- make sure key authentication works for GA4 and for end user
-- write documentation
+Note: the file ending in `.pub` is the public key file that will be registered with the SFTP server. The other file is your private key that you will provide when authenticating with the server.
+
+## Server Debugging Tips
+If something goes wrong when setting up the SFTP server or trying to connect to it, you can get more information for debugging by connecting to the server and running some commands. You can easily connect to the server by logging in to GCP, then navigating to `Compute Engine > VM instances`. Find the instance with a name matching the `name` value set in your `config.auto.tfvars` file plus "-server", and click `SSH` toward the right side of the same row. Follow the prompts to open and authenticate via GCP's SSH-in-browser.
+
+Once in a command line interface, you can:
+* see the logs related to the startup script (see also the `startup.sh` file) by running: `sudo grep "startup-script" /var/log/syslog`
+* check and monitor the authentication logs by running: `sudo tail -f /var/log/auth.log`
+    * Note: stop monitoring the logs by pressing `Ctrl` + `c` on your keyboard.
+* check the contents of the public key file by running: `sudo cat /home/<username>/.ssh/authorized_keys`
+    * Note: replace `<username>` with the appropriate value (e.g., `sftpuser` for the default file managing user)
+
+## FAQs
+### Does the file for the Data Import have to be named `ga4data.csv`?
+No, that value isn't hardcoded anywhere in these Terraform scripts. Just make sure that the file name matches what you've told GA4 to look for when configuring the Data Import data source.
+
+### Can this support more than 1 data source/type in the Data Import settings?
+Yes, it should be able to. Use a different file name when configuring the new data source in GA4, but keep the other details the same, including the username.
+
+When GA4 returns the public key, it should match what you already have saved in the file `ga4_service_account_key.pub`. Compare the two values to confirm this.
+
+### How do I connect to the SFTP server and upload files?
+While not strictly necessary, the easiest way is to install an application on your computer. [FileZilla](https://filezilla-project.org/) is free and open-source.
