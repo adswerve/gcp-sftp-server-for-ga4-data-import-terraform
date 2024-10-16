@@ -81,4 +81,4 @@ Yes, it should be able to. Use a different file name when configuring the new da
 When GA4 returns the public key, it should match what you already have saved in the file `ga4_sftp.pub`. Compare the two values to confirm this.
 
 ### How do I connect to the SFTP server and upload files?
-While not strictly necessary, the easiest way is to install an application on your computer. [FileZilla](https://filezilla-project.org/) is free and open-source.
+While it's possible to interact with the server via a CLI, the easiest way is to install an application on your computer. [FileZilla](https://filezilla-project.org/) is free and open-source.
