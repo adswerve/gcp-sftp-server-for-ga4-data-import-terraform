@@ -1,4 +1,4 @@
 .terraform/
 .terraform.lock.hcl
-.pub
+*.pub
 .DS_store
