@@ -29,8 +29,8 @@ resource "google_compute_instance" "sftp_server" {
   // https://developer.hashicorp.com/terraform/language/functions/templatefile
   metadata_startup_script = templatefile("./startup.sh", {
     username_sftp = var.username,
-    public_key_ga4 = trimspace(file("${path.module}/ga4_service_account_key.pub")),
-    public_key_sftp = trimspace(file("${path.module}/id_rsa_sftp.pub")),
+    public_key_ga4 = trimspace(file("${path.module}/ga4_sftp.pub")),
+    public_key_sftp = trimspace(file("${path.module}/id_sftp.pub")),
     gcs_bucket = google_storage_bucket.file_bucket.name
   })
 
