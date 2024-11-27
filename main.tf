@@ -17,7 +17,7 @@ resource "google_compute_instance" "sftp_server" {
     }
   }
 
-  hostname = var.server_hostname
+  hostname = var.server_hostname != "" ? var.server_hostname : null
 
   network_interface {
     network = "default"

@@ -5,8 +5,8 @@ project_id = "your-gcp-project-name-goes-here"
 // Use 6-30 characters matching RegEx `[a-z]([-a-z0-9]*[a-z0-9])`
 name = "ga4-data-import-sftp"
 
-// Custom hostname for SFTP server
-server_hostname = "ga4sftp.example.com"
+// Custom hostname for SFTP server. Empty string skips this component.
+server_hostname = ""
 
 // Username for file uploader
 username = "sftpuser"
