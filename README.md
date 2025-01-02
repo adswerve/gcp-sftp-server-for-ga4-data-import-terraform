@@ -10,7 +10,8 @@ The SFTP server can support a fixed hostname. If this is desired, you will also 
 Terraform will also need to be [installed on your device](https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/install-cli).
 
 ## Steps
-1. Create a bucket in Google Cloud Storage for the Terraform state file named `ga4-data-import-sftp-tf-state`.
+1. Create a bucket in Google Cloud Storage for the Terraform state file. [Bucket names](https://cloud.google.com/storage/docs/buckets#considerations) must be globally unique, so name it your GCP Project ID plus `-ga4-data-import-sftp-tf-state`.
+    * For example, an ID of `adswerves-cool-project` should result in a bucket name of `adswerves-cool-project-ga4-data-import-sftp-tf-state`.
 2. Optionally, choose a custom domain to use for the SFTP server. Otherwise, the server can be accessed by its fixed IP address.
 3. Optionally, choose a username for the user who will be uploading and managing files. Otherwise, the default username of `sftpuser` will be used.
 4. [Generate a public key file](#quick-and-easy-key-file-generation) for the user in step 3, name it `id_sftp.pub`, and save it within the parent folder of these scripts.
