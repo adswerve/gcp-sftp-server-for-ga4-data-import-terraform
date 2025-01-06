@@ -12,20 +12,6 @@ variable "username" {
   sensitive   = true
 }
 
-//variable "public_key_ga4" {
-//  description = "The public key used for authentication by GA4"
-//  type        = string
-//  sensitive   = true
-//  default     = file("ga4_service_account_key.pub")
-//}
-
-//variable "public_key_sftp" {
-//  description = "The public key used for authentication by the SFTP server user"
-//  type        = string
-//  sensitive   = true
-//  default     = file("id_rsa_sftp.pub")
-//}
-
 // General GCP Variables
 variable "project_id" {
   description = "GCP Project ID"
