@@ -12,7 +12,7 @@ server_hostname = ""
 username = "sftpuser"
 
 // Google Compute Engine instance configuration settings
-machine_type = "e2-micro"
-os_family    = "ubuntu-2404-lts-amd64"
+machine_type   = "e2-micro"
+os_family      = "ubuntu-2404-lts-amd64"
 compute_region = "us-central1"
-compute_zone = "us-central1-a"
+compute_zone   = "us-central1-a"

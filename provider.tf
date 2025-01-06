@@ -15,7 +15,7 @@ module "project-services" {
   source  = "terraform-google-modules/project-factory/google//modules/project_services"
   version = "~> 17.0"
 
-  project_id = var.project_id
-  activate_apis = var.gcp_service_list
+  project_id                  = var.project_id
+  activate_apis               = var.gcp_service_list
   disable_services_on_destroy = false
 }

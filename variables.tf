@@ -19,15 +19,15 @@ variable "project_id" {
 }
 
 variable "gcp_service_list" {
-    description = "GCP API libraries to enable, if necessary"
-    type = list(string)
-    default = [
-        "cloudresourcemanager.googleapis.com",
-        "serviceusage.googleapis.com",
-        "compute.googleapis.com",
-        "iam.googleapis.com",
-        "storage.googleapis.com"
-    ]
+  description = "GCP API libraries to enable, if necessary"
+  type        = list(string)
+  default = [
+    "cloudresourcemanager.googleapis.com",
+    "serviceusage.googleapis.com",
+    "compute.googleapis.com",
+    "iam.googleapis.com",
+    "storage.googleapis.com"
+  ]
 }
 
 // Compute Engine Variables
@@ -58,5 +58,5 @@ variable "server_hostname" {
 variable "firewall_ip_ranges" {
   description = "The range of IP addresses that are allowed to connect to your VM"
   type        = list(string)
-  default = ["0.0.0.0/0"]
+  default     = ["0.0.0.0/0"]
 }
