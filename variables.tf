@@ -3,9 +3,7 @@ variable "name" {
   type        = string
 }
 
-// Authentication Variables
-// See article for using Terraform environment variables:
-// https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1
+// Authentication Variable
 variable "username" {
   description = "The username for the SFTP server user"
   type        = string
