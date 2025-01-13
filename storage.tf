@@ -1,6 +1,6 @@
 // https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket
 resource "google_storage_bucket" "file_bucket" {
-  name          = "${var.name}-files"
+  name          = "${var.project_id}-${var.name}"
   location      = "US"
   force_destroy = true
 
