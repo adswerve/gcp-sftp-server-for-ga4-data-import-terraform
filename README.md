@@ -99,4 +99,8 @@ Yes, it should be able to. Use a different file name when configuring the new da
 When GA4 returns the public key, it should match what you already have saved in the file `ga4_sftp.pub`. Compare the two values to confirm this.
 
 ### How do I connect to the SFTP server and upload files?
-While it's possible to interact with the server via a CLI, the easiest way is to install an application on your computer. [FileZilla](https://filezilla-project.org/) is free and open-source.
+If you're strictly using SFTP, the easiest way to upload files is by using an SFTP client like [FileZilla](https://filezilla-project.org/), which is free and open-source. If you prefer the command line, you could also connect via `sftp`.
+
+That said, the only hard requirement is that *GA4* can access the files via SFTP. Once the setup is complete, Terraform automatically mounts the server's `/var/sftp/uploads` folder to a Google Cloud Storage bucket, named `<project_id>-<name>`, using the variable values set in the `config.auto.tfvars` file.
+
+If you're comfortable with GCP, you can upload files directly to this bucket or set up an automated process to feed files into it.
